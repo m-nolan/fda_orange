@@ -38,7 +38,7 @@ class Patent(BaseModel):
         table_name = 'patent'
         primary_key = False
 
-class Products(BaseModel):
+class Product(BaseModel):
     appl_no = IntegerField(column_name='Appl_No', null=True)
     appl_type = TextField(column_name='Appl_Type', null=True)
     applicant = TextField(column_name='Applicant', null=True)
@@ -57,6 +57,6 @@ class Products(BaseModel):
     index = IntegerField(index=True, null=True)
 
     class Meta:
-        table_name = 'products'
+        table_name = 'product'
         primary_key = False
 
