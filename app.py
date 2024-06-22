@@ -14,7 +14,7 @@ from hashlib import md5
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-database = SqliteDatabase('.\fda_orange.db')
+# database = SqliteDatabase(db_file)
 
 def create_tables():
     with database:
@@ -81,5 +81,4 @@ def product_table():
 
 if __name__ == "__main__":
     # session.table_idx = 0
-    create_tables()
     app.run()
