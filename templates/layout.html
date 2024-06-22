@@ -1,0 +1,11 @@
+<!doctype html>
+<title>FDA Orange Book</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>FDA Orange Book</h1>
+  <div class=metanav>
+    <a href="{{ url_for('exclusivity_table') }}">exclusivity</a>
+    <a href="{{ url_for('patent_table') }}">patent</a>
+    <a href="{{ url_for('product_table') }}">product</a>
+  </div>
+</div>

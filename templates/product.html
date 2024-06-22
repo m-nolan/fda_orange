@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Product</h2>
+  <ul>
+    {% for product in product_list %}
+      <li>{% include "includes/product.html" %}</li>
+    {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+{% endblock %}
