@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Patent</h2>
+  <ul>
+    {% for patent in patent_list %}
+      <li>{% include "includes/patent.html" %}</li>
+    {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+{% endblock %}

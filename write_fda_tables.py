@@ -1,3 +1,6 @@
+# this only needs to be run once.
+# TODO: create a separate program to update the tables with new data
+# ...obvious code reuse opportunities, refactor this in the future.
 import pandas as pd
 import sqlite3
 
@@ -5,8 +8,11 @@ def create_dataframes(data_dir = './data'):
     product_df = pd.read_csv('./data/products.txt',sep='~')
     product_df[['Delivery_Format','Route']] = product_df['DF;Route'].str.split(';',expand=True)
     product_df.drop('DF;Route',axis=1,inplace=True)
-    patent_df = pd.read_csv('./data/patent.txt',sep='~')
-    exclusivity_df = pd.read_csv('./data/exclusivity.txt',sep='~')
+    product_df['Approval_Date_Prior'] = ['Approved Prior to' in ds for ds in product_df.Approval_Date]
+    product_df['Approval_Date'] = pd.to_datetime(product_df['Approval_Date'],format='%b %d, %Y',exact=False)
+    patent_df = pd.read_csv('./data/patent.txt',sep='~',parse_dates=['Patent_Expire_Date_Text','Submission_Date'],date_format='%b %d, %Y')
+    patent_df = patent_df.rename(columns={'Patent_Expire_Date_Text': 'Patent_Expire_Date'})
+    exclusivity_df = pd.read_csv('./data/exclusivity.txt',sep='~',parse_dates=['Exclusivity_Date'],date_format='%b %d, %Y')
     return product_df, patent_df, exclusivity_df
 
 def clean_dataframes(product_df, patent_df, exclusivity_df):

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Exclusivity</h2>
+  <ul>
+    {% for exclusivity in exclusivity_list %}
+      <li>{% include "includes/exclusivity.html" %}</li>
+    {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+{% endblock %}
