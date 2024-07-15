@@ -13,6 +13,8 @@ def clean_dataframes(product_df, patent_df, exclusivity_df):
     for df in [product_df, patent_df, exclusivity_df]:
         for k in df.keys():
             df[k] = [s.replace("'","") if isinstance(s,str) else s for s in df[k].values]
+    patent_df['PED'] = ['*PED' in s for s in patent_df['Patent_No']]
+    patent_df.loc[patent_df['PED'],'Patent_No'] = [s.replace('*PED','') for s in patent_df[patent_df['PED']]['Patent_No']]
     return product_df, patent_df, exclusivity_df
 
 def write_tables(product_df, patent_df, exclusivity_df, db_file='fda_orange.db'):
